@@ -1,0 +1,34 @@
+{
+  "name": "Blog PHP Thuần",
+  "version": "1.0.0",
+  "description": "Ứng dụng blog đơn giản xây dựng bằng PHP thuần với đầy đủ tính năng",
+  "author": "Sinh viên PHP",
+  "license": "MIT",
+  "requirements": {
+    "php": ">=7.4.0",
+    "mysql": ">=5.7.0",
+    "extensions": ["pdo", "pdo_mysql"]
+  },
+  "features": [
+    "Đăng ký/Đăng nhập",
+    "Quản lý bài viết",
+    "Bình luận phân cấp",
+    "Tìm kiếm bài viết",
+    "Phân trang",
+    "Admin panel",
+    "Role-based access control",
+    "XSS protection",
+    "SQL Injection protection"
+  ],
+  "defaultAdmin": {
+    "username": "admin",
+    "password": "admin123",
+    "email": "admin@blog.local"
+  },
+  "configuration": {
+    "postsPerPage": 5,
+    "commentsPerPage": 10,
+    "maxUploadSize": "5MB",
+    "allowedHTMLTags": ["p", "br", "strong", "em", "u", "ul", "ol", "li", "img", "a", "blockquote", "h1", "h2", "h3", "h4", "h5", "h6"]
+  }
+}
