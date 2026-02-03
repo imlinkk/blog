@@ -270,19 +270,13 @@ created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 
 Dự án tự do sử dụng cho mục đích học tập & phát triển.
 
----
 
-<<<<<<< HEAD
-**Phiên bản:** 1.0  
-**Cập nhật:** Tháng 2, 2026
-#   b l o g 
- 
  
 =======
 **Tạo bởi:** Sinh viên PHP  
 **Ngày:** Tháng 2, 2026  
 **Phiên bản:** 1.0
-#   b l o g 
+
  
- 
->>>>>>> ae9082170b52cab1f39918e7c35ef91df08d8d73
+
+
