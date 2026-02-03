@@ -1,285 +1,179 @@
-# 📚 Blog PHP Thuần
+# 📘 Blog PHP Thuần
 
+Ứng dụng blog đơn giản xây dựng bằng **PHP thuần (vanilla PHP)** với đầy đủ tính năng quản lý bài viết, bình luận phân cấp, xác thực người dùng và admin panel.
 
-
-> Ứng dụng blog đơn giản xây dựng bằng **PHP thuần** (vanilla PHP) với đầy đủ tính năng quản lý bài viết, bình luận phân cấp, xác thực người dùng và admin panel.
+---
 
 ## ⚙️ Yêu Cầu Hệ Thống
 
-| Yêu Cầu | Phiên Bản |
-|---------|----------|
-| PHP | 7.4+ |
-| MySQL | 5.7+ |
-| Web Server | Apache / Nginx |
-| Local Server | Laragon hoặc tương tự |
+| Thành phần   | Phiên bản                     |
+| ------------ | ----------------------------- |
+| PHP          | >= 7.4                        |
+| MySQL        | >= 5.7                        |
+| Web Server   | Apache / Nginx                |
+| Local Server | Laragon / XAMPP / tương đương |
+
+---
 
 ## 🚀 Cài Đặt Nhanh
 
-### 1. Clone Dự Án
+### 1. Clone dự án
 
 ```bash
-git clone <repo-url>
+git clone <link-repo>
 cd Blog
 ```
 
 ### 2. Tạo Database
 
-**Với phpMyAdmin (Laragon):**
-- Mở Laragon → **Database** → **phpMyAdmin**
-- Vào tab **SQL**, dán nội dung `blog_db.sql`
-- Nhấp **Go**
+**Cách 1: phpMyAdmin (Laragon)**
 
-**Với Command Line:**
+* Mở Laragon → Database → phpMyAdmin
+* Vào tab **SQL**
+* Import file `blog_db.sql`
+
+**Cách 2: Command Line**
+
 ```bash
 mysql -u root -p < blog_db.sql
-# Hoặc không có password:
-mysql -u root < blog_db.sql
 ```
 
-### 3. Cấu Hình Database (Nếu Khác)
+---
 
-Sửa file `includes/config.php`:
+### 3. Cấu hình Database
+
+Sửa file: `includes/config.php`
 
 ```php
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', '');          // Thêm password nếu có
+define('DB_PASS', '');
 define('DB_NAME', 'blog');
 ```
 
-### 4. Chạy Ứng Dụng
+---
+
+### 4. Chạy ứng dụng
 
 **Laragon:**
-- Start All → Truy cập `http://localhost/Blog`
+
+```
+Start All → http://localhost/Blog
+```
 
 **PHP Built-in Server:**
+
 ```bash
 php -S localhost:8000
-# Truy cập: http://localhost:8000
 ```
+
+Truy cập: [http://localhost:8000](http://localhost:8000)
+
+---
 
 ## 👤 Tài Khoản Demo
 
-| Tài Khoản | Username | Password |
-|-----------|----------|----------|
-| **Admin** | `admin` | `admin123` |
-| **User 1** | `john` | `admin123` |
-| **User 2** | `jane` | `admin123` |
-| **User 3** | `bob` | `admin123` |
-| **User 4** | `alice` | `admin123` |
+| Role   | Username | Password |
+| ------ | -------- | -------- |
+| Admin  | admin    | admin123 |
+| User 1 | john     | admin123 |
+| User 2 | jane     | admin123 |
+| User 3 | bob      | admin123 |
+| User 4 | alice    | admin123 |
+
+---
 
 ## 📁 Cấu Trúc Dự Án
 
 ```
 Blog/
-├── admin/                      # Admin Panel
-│   ├── index.php              # Dashboard
-│   ├── posts.php              # Quản lý bài viết
-│   ├── users.php              # Quản lý người dùng
-│   ├── comments.php           # Quản lý bình luận
-│   └── categories.php         # Quản lý danh mục
-├── assets/                     # Tài nguyên tĩnh
-│   ├── css/style.css          # CSS custom
-│   └── js/script.js           # JavaScript custom
-├── includes/                   # Thư mục include
-│   ├── config.php             # Cấu hình chung
-│   ├── database.php           # Class PDO Database
-│   ├── functions.php          # Hàm hỗ trợ
-│   ├── header.php             # Header template
-│   └── footer.php             # Footer template
-├── uploads/                    # Upload files
-├── index.php                   # Trang chủ
-├── register.php                # Đăng ký
-├── login.php                   # Đăng nhập
-├── logout.php                  # Đăng xuất
-├── forgot-password.php         # Quên mật khẩu
-├── create-post.php             # Viết bài mới
-├── edit-post.php               # Chỉnh sửa bài
-├── delete-post.php             # Xóa bài
-├── post.php                    # Chi tiết bài viết
-├── search.php                  # Tìm kiếm
-├── category.php                # Xem danh mục
-├── my-posts.php                # Bài viết của tôi
-├── comment-handler.php         # Xử lý bình luận
-├── blog_db.sql                 # Database SQL
-└── README.md                   # Tài liệu này
+├── admin/
+│   ├── index.php        # Dashboard
+│   ├── posts.php        # Quản lý bài viết
+│   ├── users.php        # Quản lý người dùng
+│   ├── comments.php     # Quản lý bình luận
+│   └── categories.php   # Quản lý danh mục
+│
+├── assets/
+│   ├── css/style.css
+│   └── js/script.js
+│
+├── includes/
+│   ├── config.php
+│   ├── database.php
+│   ├── functions.php
+│   ├── header.php
+│   └── footer.php
+│
+├── uploads/
+├── index.php            # Trang chủ
+├── login.php
+├── register.php
+├── logout.php
+├── post.php             # Chi tiết bài viết
+├── create-post.php
+├── edit-post.php
+├── delete-post.php
+├── search.php
+├── category.php
+├── my-posts.php
+├── comment-handler.php
+├── forgot-password.php
+├── blog_db.sql
+└── README.md
 ```
+
+---
 
 ## ✨ Tính Năng Chính
 
-### 🔐 Xác Thực & Bảo Mật
-- Đăng ký / Đăng nhập / Đăng xuất
-- Quên mật khẩu (cơ bản)
-- Mã hóa mật khẩu `password_hash()`
-- Kiểm tra quyền trên mỗi trang
-- Chống XSS, SQL Injection
+### 🔐 Xác thực & Bảo mật
 
-### 📝 Quản Lý Bài Viết
-- Tạo / Chỉnh sửa / Xóa bài viết
-- Tự động tạo slug từ tiêu đề
-- Hỗ trợ danh mục & tags
-- Tăng lượt xem tự động
-- Phân trang danh sách bài
+* Đăng ký / Đăng nhập / Đăng xuất
+* Hash password (`password_hash()`)
+* Phân quyền user / admin
+* Chống XSS, SQL Injection
 
-### 💬 Bình Luận Phân Cấp
-- Bình luận gốc & reply (tối đa 3 cấp)
-- Cho phép guest & member bình luận
-- Xóa bình luận (tác giả + admin)
-- Hiển thị theo thời gian
+### 📝 Quản lý bài viết
 
-### 🔍 Tìm Kiếm & Duyệt
-- Tìm kiếm theo tiêu đề / nội dung / tags
-- Xem bài viết theo danh mục
-- Bài viết liên quan
+* Tạo / Sửa / Xóa bài viết
+* Upload ảnh
+* Tự động tạo slug
+* Phân trang
+* Danh mục & tags
 
-### 👨‍💼 Admin Panel
-- Dashboard với thống kê
-- Quản lý tất cả bài viết / người dùng / bình luận / danh mục
-- Thay đổi role người dùng
+### 💬 Bình luận phân cấp
 
-### 🎨 Giao Diện
-- Bootstrap 5 responsive
-- Mobile-friendly
-- Icons Font Awesome
-- Form validation
+* Bình luận gốc + reply (tối đa 3 cấp)
+* Guest & member đều có thể bình luận
+* Xóa bình luận (admin + tác giả)
 
-## 🔧 Các Hàm Hỗ Trợ Chính
+### 🔍 Tìm kiếm & duyệt
 
-```php
-// Xác thực
-isLoggedIn()              // Kiểm tra đã đăng nhập?
-isAdmin()                 // Kiểm tra quyền admin?
-getCurrentUser()          // Lấy thông tin user hiện tại
+* Tìm theo tiêu đề / nội dung / tag
+* Xem theo danh mục
+* Bài viết liên quan
 
-// Bảo mật
-escape($text)             // Chống XSS
-filterHTML($html)         // Lọc HTML cho phép tag cơ bản
-isValidEmail($email)      // Validate email
-isValidPassword($pass)    // Kiểm tra mật khẩu mạnh
+### 🛠 Admin Panel
 
-// Bài viết
-canEditPost($id, $uid)    // Kiểm tra quyền chỉnh sửa
-canDeletePost($id, $uid)  // Kiểm tra quyền xóa
-createSlug($title)        // Tạo slug từ tiêu đề
-getTotalPosts()           // Tổng số bài viết
+* Dashboard thống kê
+* Quản lý bài viết / user / bình luận / danh mục
+* Phân quyền role
 
-// UI
-renderPagination()        // Phân trang HTML
-formatDate($date)         // Định dạng ngày
-showSuccess($msg)         // Alert thành công
-showError($msg)           // Alert lỗi
-```
+---
 
-## 🗄️ Database Schema
+## 🎨 Giao diện
 
-### Users
-```sql
-id          INT PRIMARY KEY AUTO_INCREMENT
-username    VARCHAR(50) UNIQUE NOT NULL
-email       VARCHAR(100) UNIQUE NOT NULL
-password    VARCHAR(255) NOT NULL (bcrypt)
-fullname    VARCHAR(100)
-role        ENUM('user', 'admin') DEFAULT 'user'
-created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-```
+* Bootstrap responsive
+* Mobile-friendly
+* Font Awesome icons
 
-### Posts
-```sql
-id          INT PRIMARY KEY AUTO_INCREMENT
-title       VARCHAR(255) NOT NULL
-slug        VARCHAR(255) UNIQUE NOT NULL
-excerpt     TEXT
-content     LONGTEXT
-user_id     INT NOT NULL (FK → users)
-category_id INT (FK → categories)
-tags        VARCHAR(255)
-views       INT DEFAULT 0
-created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-```
+---
 
-### Comments
-```sql
-id          INT PRIMARY KEY AUTO_INCREMENT
-post_id     INT NOT NULL (FK → posts)
-parent_id   INT DEFAULT 0 (0 = root)
-name        VARCHAR(100) (guest name)
-email       VARCHAR(100)
-content     TEXT
-user_id     INT (FK → users, NULL = guest)
-created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-```
+## 📌 Ghi chú
 
-### Categories
-```sql
-id          INT PRIMARY KEY AUTO_INCREMENT
-name        VARCHAR(100) NOT NULL
-slug        VARCHAR(100) UNIQUE NOT NULL
-description TEXT
-created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-```
+> Dự án phục vụ mục đích học tập PHP thuần + MVC + CRUD + Auth + Admin Panel
 
-## 🔒 Bảo Mật
-
-✅ **Đã cài đặt:**
-- Password hashing với `password_hash()` & `password_verify()`
-- Prepared statements (PDO) chống SQL Injection
-- XSS protection với `htmlspecialchars()`
-- HTML filtering cho nội dung bài viết
-- Session-based authentication
-- Role-based access control
-
-⚠️ **Khuyến cáo:**
-- Luôn validate dữ liệu đầu vào
-- Sử dụng HTTPS trong production
-- Thay đổi mật khẩu admin mặc định
-- Cập nhật PHP thường xuyên
-
-## 📊 Hướng Dẫn Sử Dụng
-
-### Viết bài mới
-1. Đăng nhập → Nhấp **"Viết Bài"**
-2. Điền thông tin & nhấp **"Đăng Bài"**
-
-### Bình luận & reply
-1. Mở chi tiết bài viết
-2. Điền form bình luận → Nhấp **"Gửi"**
-3. Nhấp **"Trả lời"** trên bình luận để reply (tối đa 3 cấp)
-
-### Quản lý admin
-1. Đăng nhập với tài khoản admin
-2. Nhấp **"Admin"** trên menu top
-3. Chọn chức năng: Bài viết / Người dùng / Bình luận / Danh mục
-
-## 🐛 Troubleshooting
-
-| Lỗi | Giải Pháp |
-|-----|----------|
-| "Kết nối database thất bại" | Kiểm tra config.php, đảm bảo host/user/password/database đúng |
-| "404 Not Found" | Kiểm tra routing, tạo .htaccess nếu dùng Apache |
-| "Bài viết không tìm thấy" | Kiểm tra database có dữ liệu, hoặc ID bài viết có tồn tại |
-| "Không thể đăng nhập" | Kiểm tra username/password đúng |
-
-## 📝 Ghi Chú
-
-- Dữ liệu mẫu đã có sẵn trong file SQL (10 bài, 20 bình luận, 5 user)
-- Slug tự động tạo từ tiêu đề
-- Bình luận phân cấp tối đa 3 cấp
-- Phân trang mặc định: 5 bài viết/trang, 10 bình luận/trang
-- HTML filter cho phép tags cơ bản (p, strong, em, ul, ol, img, ...)
-
-## 📄 Giấy Phép
-
-Dự án tự do sử dụng cho mục đích học tập & phát triển.
-
-
- 
-=======
-**Tạo bởi:** Sinh viên PHP  
-**Ngày:** Tháng 2, 2026  
-**Phiên bản:** 1.0
-
- 
-
+---
 
 
