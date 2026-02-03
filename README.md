@@ -1,5 +1,7 @@
 # 📚 Blog PHP Thuần
 
+
+
 > Ứng dụng blog đơn giản xây dựng bằng **PHP thuần** (vanilla PHP) với đầy đủ tính năng quản lý bài viết, bình luận phân cấp, xác thực người dùng và admin panel.
 
 ## ⚙️ Yêu Cầu Hệ Thống
@@ -278,5 +280,6 @@ Dự án tự do sử dụng cho mục đích học tập & phát triển.
 **Phiên bản:** 1.0
 
  
+
 
 
